@@ -1,0 +1,85 @@
+* {
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    font-family: "Terminus";
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+window#waybar {
+}
+
+image {
+    padding: 10px;
+}
+
+/*
+          Main glassmorphism blocks + the system pill container
+*/
+#waybar {
+    color: rgba(23,173,6, .8);
+    font-size: 20px;
+    letter-spacing: -2px;
+}
+
+
+#clock,
+#tray,
+#system {
+}
+
+#clock {
+    letter-spacing: 0px;
+}
+#clock.norm {
+    color: rgba(100,140,50, 1);
+    margin: 0;
+    padding: 0;
+}
+#clock.secs {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* The System Pill container's outer padding */
+#system {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0 4px;
+}
+
+#network {
+    margin-right: 50px;
+    color: #386b02;
+}
+#battery {
+    padding: 0;
+    background-color: #0b0619;
+    opacity: .7;
+    margin-right: 20px;            
+}
+
+#tray {
+    background-color: rgba(43, 2, 27, .7);;
+    padding: 0;
+    opacity: .7;
+    margin-right: 50px;
+}
+
+#bluetooth {
+    font-size: 16px;
+}
+
+#workspaces button {
+    opacity: .2;
+}
+
+#workspaces button.visible {
+    opacity: .5;
+}
+
+#workspaces button.active {
+    opacity: 1;
+}
