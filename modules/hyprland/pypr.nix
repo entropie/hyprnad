@@ -1,8 +1,8 @@
-{ config, flakeInputs, lib, pkgs, ... }:
+{ config, hyprnadInputs, lib, pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
-    flakeInputs.pyprland.packages.${pkgs.stdenv.hostPlatform.system}.default
+    hyprnadInputs.pyprland.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
   
   home-manager.users."mit" = {
