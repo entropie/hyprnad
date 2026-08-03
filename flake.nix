@@ -1,5 +1,5 @@
 {
-  description = "My private Hyprland configuration stack";
+  description = "hyprnad is hyprland configured my xmonad used to be";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -25,7 +25,7 @@
     };
   };
 
-  outputs = inputs@{ ... }: {
+  outputs = inputs@{ self, ... }: {
     nixosModules = rec {
       default = import ./modules/hyprland {
         inherit inputs;
