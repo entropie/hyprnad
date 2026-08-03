@@ -7,13 +7,14 @@ let
   hyprPackage = hyprPkgs.hyprland;
 
   hostName = config.networking.hostName;
-  hostHyprpaperConfig = "/home/mit/.config/hypr/hyprpaper.${hostName}.conf";
-  hostWaybarCSSConfig = "/home/mit/.config/hypr/waybar.${hostName}.css";
-  hostWaybarConfig = "/home/mit/.config/hypr/waybar.${hostName}.conf";
+  hostHyprpaperConfig = "${userHome}/.config/hypr/hyprpaper.${hostName}.conf";
+  hostWaybarCSSConfig = "${userHome}/.config/hypr/waybar.${hostName}.css";
+  hostWaybarConfig    = "${userHome}/.config/hypr/waybar.${hostName}.conf";
 in
 {
   config = lib.mkIf cfg.enable {
-    home-manager.users."mit" = { config, ... }:
+    home-manager.users.${cfg.user} = { config, ... }:
+     = {
 
       let
         externalOrText = path: fallback:

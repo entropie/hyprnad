@@ -5,7 +5,7 @@
     hyprnadInputs.pyprland.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
   
-  home-manager.users."mit" = {
+  home-manager.users.${cfg.user} = {
     xdg.configFile."pypr/config.toml".source =
       (pkgs.formats.toml { }).generate "pypr-config.toml" {
         pyprland = {

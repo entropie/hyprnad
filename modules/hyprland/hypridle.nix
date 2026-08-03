@@ -6,7 +6,7 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ hypridle ];
     systemd.user.services."mit".enable = false;
-    home-manager.users."mit" = {
+    home-manager.users.${cfg.user} = {
       xdg.configFile."hypr/hypridle.conf".text = ''
         general {
             lock_cmd = pidof hyprlock || hyprlock

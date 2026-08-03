@@ -51,6 +51,13 @@ in
       type = lib.types.str;
       description = "custom hyprland settings";
     };
+
+    user = lib.mkOption {
+      type = lib.types.str;
+      example = "mit";
+      description = "User receiving the Hyprland Home Manager configuration";
+    };
+
   };
 
   config = lib.mkMerge [
@@ -146,7 +153,7 @@ in
         style = "adwaita-dark";
       };
 
-      home-manager.users."mit" = {
+      home-manager.users.${cfg.user} = {
 
         xdg.configFile."hypr/custom.lua".text = ''
         hl.on("hyprland.start", function()
