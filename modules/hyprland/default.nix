@@ -44,11 +44,6 @@ in
   options.modules.hyprland = {
     enable = lib.mkEnableOption "Hyprland desktop module";
 
-    custom = lib.mkOption {
-      type = lib.types.str;
-      description = "custom hyprland settings";
-    };
-
     user = lib.mkOption {
       type = lib.types.str;
       example = "mit";
