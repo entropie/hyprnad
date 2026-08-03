@@ -158,15 +158,12 @@ in
         style = "adwaita-dark";
       };
 
-      home-manager.users.${cfg.user} = { config = hmConfig, ... }: {
-
-          xdg.configFile."hypr".source =
-            if cfg.configDir == null then
-              "${inputs.self}/config/hypr"
-            else
-              hmConfig.lib.file.mkOutOfStoreSymlink cfg.configDir;
-        };
-
+      home-manager.users.${cfg.user} = { config, ... }: {
+        xdg.configFile."hypr".source =
+          if cfg.configDir == null then
+            "${inputs.self}/config/hypr"
+          else
+            config.lib.file.mkOutOfStoreSymlink cfg.configDir;
 
         gtk = {
           enable = true;
