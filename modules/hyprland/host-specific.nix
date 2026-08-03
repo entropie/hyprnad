@@ -6,6 +6,7 @@ let
   hyprPkgs = hyprland.packages.${system};
   hyprPackage = hyprPkgs.hyprland;
 
+  userHome = config.users.users.${cfg.user}.home;
   hostName = config.networking.hostName;
   hostHyprpaperConfig = "${userHome}/.config/hypr/hyprpaper.${hostName}.conf";
   hostWaybarCSSConfig = "${userHome}/.config/hypr/waybar.${hostName}.css";
