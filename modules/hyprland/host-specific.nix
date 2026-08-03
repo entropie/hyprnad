@@ -13,7 +13,7 @@ let
 
 in
 {
-  config = lib.mkIf cfg.enable {y
+  config = lib.mkIf cfg.enable {
     home-manager.users.${cfg.user} = { config, ... }: {
       xdg.configFile."waybar/config".source =
         config.lib.file.mkOutOfStoreSymlink

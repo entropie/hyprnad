@@ -39,6 +39,7 @@ in
   imports = [
     hyprland.nixosModules.default
     ./pypr.nix
+    ./host-specific.nix
   ];
 
   options.modules.hyprland = {
