@@ -1,62 +1,19 @@
-{ config, lib, pkgs, flakeInputs, hyprland, paths, ... }:
+{ config, lib, ... }:
 
 let
   cfg = config.modules.hyprland;
-  system = pkgs.stdenv.hostPlatform.system;
-  hyprPkgs = hyprland.packages.${system};
-  hyprPackage = hyprPkgs.hyprland;
-
-  userHome = config.users.users.${cfg.user}.home;
   hostName = config.networking.hostName;
-  hostHyprpaperConfig = "${userHome}/.config/hypr/hyprpaper.${hostName}.conf";
-  hostWaybarCSSConfig = "${userHome}/.config/hypr/waybar.${hostName}.css";
-  hostWaybarConfig    = "${userHome}/.config/hypr/waybar.${hostName}.conf";
 in
 {
   config = lib.mkIf cfg.enable {
-    home-manager.users.${cfg.user} = { config, ... }:
-      let
-        externalOrText = path: fallback:
-          if builtins.pathExists path then {
-            source = config.lib.file.mkOutOfStoreSymlink path;
-          } else {
-            text = fallback;
-          };
-      in
-      {
-        xdg.configFile."hypr/hyprpaper.conf" =
-          externalOrText hostHyprpaperConfig ''
-            wallpaper {
-                monitor =
-                path = ${cfg.wallpaper}
-                fit_mode = cover
-            }
-          '';
+    home-manager.users.${cfg.user} = { config, ... }: {
+      xdg.configFile."waybar/config".source =
+        config.lib.file.mkOutOfStoreSymlink
+          "${config.xdg.configHome}/hypr/waybar.${hostName}.conf";
 
-        xdg.configFile."waybar/config" =
-          externalOrText hostWaybarConfig ''
-            {
-              "layer": "top",
-              "position": "bottom",
-              "height": 20
-            }
-          '';
-
-        xdg.configFile."waybar/style.css" =
-          externalOrText hostWaybarCSSConfig ''
-            * {
-                min-height: 0;
-                margin: 0;
-                padding: 0;
-                border: none;
-            }
-
-            window#waybar {
-                background-color: rgba(0, 0, 0, 0.9);
-            }
-          '';
-
-        # übrige Home-Manager-Konfiguration …
-      };
+      xdg.configFile."waybar/style.css".source =
+        config.lib.file.mkOutOfStoreSymlink
+          "${config.xdg.configHome}/hypr/waybar.${hostName}.css";
+    };
   };
 }
