@@ -158,9 +158,8 @@ in
         style = "adwaita-dark";
       };
 
-      home-manager.users.${cfg.user} = {
+      home-manager.users.${cfg.user} = { config = hmConfig, ... }: {
 
-        home-manager.users.${cfg.user} = { config = hmConfig, ... }: {
           xdg.configFile."hypr".source =
             if cfg.configDir == null then
               "${inputs.self}/config/hypr"
