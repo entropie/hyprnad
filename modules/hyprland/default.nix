@@ -15,12 +15,15 @@ let
   hyprspace = hyprnadInputs.Hyprspace.packages.${system}.Hyprspace;
 
   hyprgamma = pkgs.callPackage
-    ({ lib, cmake, pkg-config, nlohmann_json, hyprland, hyprlandPlugins }:
+    ({ lib, cmake, nlohmann_json, hyprlandPlugins, ... }:
       hyprlandPlugins.mkHyprlandPlugin {
         pluginName = "hyprgamma";
-        version = "1.0.0";
+        version = "1.0.2";
+
+        hyprland = hyprPackage;
         src = hyprnadInputs."hyprgamma-src";
-        nativeBuildInputs = [ cmake pkg-config ];
+
+        nativeBuildInputs = [ cmake ];
         buildInputs = [ nlohmann_json ];
 
         meta = {
@@ -28,11 +31,8 @@ let
           license = lib.licenses.bsd3;
           platforms = lib.platforms.linux;
         };
-     })
-    {
-      hyprland = hyprPackage;
-    };
-
+      }
+    ) { };
 
 in
 {
