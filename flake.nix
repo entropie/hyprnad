@@ -1,0 +1,37 @@
+{
+  description = "My private Hyprland configuration stack";
+
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland/v0.56.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    pyprland = {
+      url = "github:hyprland-community/pyprland/3.4.3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprgamma-src = {
+      url = "github:surprizeattackxx-dotcom/hypr-gamma";
+      flake = false;
+    };
+
+    Hyprspace = {
+      url = "github:entropie/Hyprspace";
+      inputs.hyprland.follows = "hyprland";
+    };
+  };
+
+  outputs = inputs@{ ... }: {
+    nixosModules = rec {
+      default = import ./modules/hyprland {
+        inherit inputs;
+      };
+
+      hyprland = default;
+    };
+  };
+}
