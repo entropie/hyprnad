@@ -1,5 +1,8 @@
 { config, hyprnadInputs, lib, pkgs, ... }:
 
+let
+  cfg = config.modules.hyprland;
+in  
 {
   environment.systemPackages = with pkgs; [
     hyprnadInputs.pyprland.packages.${pkgs.stdenv.hostPlatform.system}.default
