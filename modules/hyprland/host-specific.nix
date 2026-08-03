@@ -14,8 +14,6 @@ in
 {
   config = lib.mkIf cfg.enable {
     home-manager.users.${cfg.user} = { config, ... }:
-     = {
-
       let
         externalOrText = path: fallback:
           if builtins.pathExists path then {
