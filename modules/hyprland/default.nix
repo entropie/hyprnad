@@ -164,7 +164,7 @@ in
           if cfg.configDir == null then
             "${inputs.self}/config/hypr"
           else
-            config.lib.file.mkOutOfStoreSymlink cfg.configDir;
+            config.lib.file.mkOutOfStoreSymlink "${cfg.configDir}/config/hypr";
 
         gtk = {
           enable = true;
