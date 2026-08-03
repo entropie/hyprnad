@@ -9,7 +9,7 @@ let
     if cfg.configDir == null then
       "${inputs.self}/config/hypr/hyprpaper.${hostName}.conf"
     else
-      "${cfg.configDir}/hyprpaper.${hostName}.conf";
+      "${cfg.configDir}/config/hypr/hyprpaper.${hostName}.conf";
 
 in
 {

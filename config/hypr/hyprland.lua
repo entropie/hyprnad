@@ -7,18 +7,21 @@
 
 require("custom")
 
-require("custom")
+local hostname_file = io.open("/etc/hostname", "r")
 
-local hostname = os.getenv("HOSTNAME")
-local host_config = os.getenv("HOME") .. "/.config/hypr/custom." .. hostname .. ".lua"
+if hostname_file then
+   local hostname = hostname_file:read("*l")
+   hostname_file:close()
 
-local file = io.open(host_config, "r")
+   local home = os.getenv("HOME")
+   local host_config = home .. "/.config/hypr/custom." .. hostname .. ".lua"
+   local file = io.open(host_config, "r")
 
-if file then
-   file:close()
-   dofile(host_config)
+   if file then
+      file:close()
+      dofile(host_config)
+   end
 end
-
 
 
 require("config")
