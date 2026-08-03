@@ -58,6 +58,11 @@ in
       description = "User receiving the Hyprland Home Manager configuration";
     };
 
+    configDir = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+      description = "Optional writable local hyprnad config checkout";
+    };
   };
 
   config = lib.mkMerge [
@@ -155,13 +160,13 @@ in
 
       home-manager.users.${cfg.user} = {
 
-        xdg.configFile."hypr/custom.lua".text = ''
-        hl.on("hyprland.start", function()
-          hl.exec_cmd("${hyprPackage}/bin/hyprctl plugin load ${hyprgamma}/lib/libhyprgamma.so")
-          hl.exec_cmd("${hyprPackage}/bin/hyprctl plugin load ${hyprspace}/lib/libHyprspace.so")
-          end)
-          ${cfg.custom}
-        '';
+        home-manager.users.${cfg.user} = { config = hmConfig, ... }: {
+          xdg.configFile."hypr".source =
+            if cfg.configDir == null then
+              "${inputs.self}/config/hypr"
+            else
+              hmConfig.lib.file.mkOutOfStoreSymlink cfg.configDir;
+        };
 
 
         gtk = {
