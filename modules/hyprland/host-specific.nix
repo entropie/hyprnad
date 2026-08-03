@@ -1,30 +1,38 @@
-{ config, inputs, lib, ... }:
+{ config, hyprnadInputs, lib, ... }:
 
 let
   cfg = config.modules.hyprland;
   hostName = config.networking.hostName;
 
-
-  hyprpaperConfig =
+  hyprConfigDir =
     if cfg.configDir == null then
-      "${inputs.self}/config/hypr/hyprpaper.${hostName}.conf"
+      "${hyprnadInputs.self}/config/hypr"
     else
-      "${cfg.configDir}/config/hypr/hyprpaper.${hostName}.conf";
-
+      cfg.configDir;
 in
 {
   config = lib.mkIf cfg.enable {
-    home-manager.users.${cfg.user} = { config, ... }: {
+    home-manager.users.${cfg.user} = hmArgs: {
       xdg.configFile."waybar/config".source =
-        config.lib.file.mkOutOfStoreSymlink
-          "${config.xdg.configHome}/hypr/waybar.${hostName}.conf";
+        if cfg.configDir == null then
+          "${hyprConfigDir}/waybar.${hostName}.conf"
+        else
+          hmArgs.config.lib.file.mkOutOfStoreSymlink
+            "${hyprConfigDir}/waybar.${hostName}.conf";
 
       xdg.configFile."waybar/style.css".source =
-        config.lib.file.mkOutOfStoreSymlink
-          "${config.xdg.configHome}/hypr/waybar.${hostName}.css";
+        if cfg.configDir == null then
+          "${hyprConfigDir}/waybar.${hostName}.css"
+        else
+          hmArgs.config.lib.file.mkOutOfStoreSymlink
+            "${hyprConfigDir}/waybar.${hostName}.css";
 
       xdg.configFile."hyprpaper/current.conf".source =
-        config.lib.file.mkOutOfStoreSymlink hyprpaperConfig;
+        if cfg.configDir == null then
+          "${hyprConfigDir}/hyprpaper.${hostName}.conf"
+        else
+          hmArgs.config.lib.file.mkOutOfStoreSymlink
+            "${hyprConfigDir}/hyprpaper.${hostName}.conf";
     };
   };
 }
