@@ -39,8 +39,8 @@ in
   imports = [
     hyprland.nixosModules.default
     ./hypridle.nix
-    ./scripts.nix
-    ./host-specific.nix
+    # ./scripts.nix
+    # ./host-specific.nix
     ./pypr.nix
   ];
 
