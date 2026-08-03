@@ -14,7 +14,7 @@ if hostname_file then
    hostname_file:close()
 
    local home = os.getenv("HOME")
-   local host_config = home .. "/.config/hypr/custom." .. hostname .. ".lua"
+   local host_config = home .. "/.config/hypr/hyprland." .. hostname .. ".lua"
    local file = io.open(host_config, "r")
 
    if file then
