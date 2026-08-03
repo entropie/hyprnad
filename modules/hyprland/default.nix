@@ -130,6 +130,10 @@ in
         grim
         dunst
 
+
+        hyprgamma
+        hyprspace
+
         hyprpaper
         hyprshot
         hyprpicker
