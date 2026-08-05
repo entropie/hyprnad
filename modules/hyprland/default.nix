@@ -126,6 +126,8 @@ in
         grim
         dunst
 
+        xrandr
+
 
         hyprgamma
         hyprspace
