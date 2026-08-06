@@ -11,20 +11,16 @@ local function toggle_keepassxc()
    if window and window.class == "org.keepassxc.KeePassXC" then
       hl.dispatch(hl.dsp.window.close())
    else
-      hl.exec_cmd("keepassxc")
+      hl.exec_cmd("uwsm-app keepassxc")
    end
 end
 
 
 
 hl.bind(mainMod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(uwsm .. term))
--- hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exit())
---hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd("uwsm stop"))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd([[loginctl terminate-user "$USER"]]))
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.close())
 
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -USR1 -x .waybar-wrapped"))
---hl.bind(mainMod .. " + Y", hl.dsp.focus({ last = true }))
 hl.bind(mainMod .. " + Y", hl.dsp.focus({ workspace = "previous" }))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(uwsm .. "gmrun"))
 hl.bind(mainMod .. " + G", function() hl.plugin.overview.toggle() end)
@@ -32,6 +28,11 @@ hl.bind(mainMod .. " + G", function() hl.plugin.overview.toggle() end)
 
 hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd(uwsm .. "missioncenter"))
 hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd(uwsm .. "powermenu"))
+
+-- Magic workspace
+hl.bind(mainMod .. " + SPACE", hl.dsp.workspace.toggle_special("magic"))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic", follow = false }))
+
 
 
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
@@ -102,13 +103,6 @@ for _, ws in ipairs(workspaces) do
         hl.dsp.window.move({ workspace = ws.id, follow = false })
     )
 end
-
-
-
--- Magic workspace
--- hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
---hl.bind(mainMod .. " + CONTROL + S", hl.dsp.window.move({ workspace = "special:magic" }))
-
 
 hl.define_submap("media", function()
                     -- hl.bind("b", hl.dsp.dpms({ action = "disable" }), { release = true })
