@@ -28,18 +28,18 @@ hl.config({
         border_size = 1,
         allow_tearing = true,
         col = {
-            active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
-            inactive_border = "rgba(595959aa)",
+            active_border = { colors = { "rgba(26c021ee)", "rgba(273527ee)" }, angle = 45 },
+            inactive_border = "rgba(111111aa)",
         },
     },
 
     dwindle = {
         smart_split = false,
-        preserve_split = true, -- You probably want this
+        preserve_split = true,
     },
 
     master = {
-       mfact = 0.60,
+       mfact = 0.55,
        new_status = "slave"
     },
 
@@ -57,8 +57,8 @@ hl.config({
        enabled = true,
     },
     misc = {
-        force_default_wallpaper = 1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
-        disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
+        force_default_wallpaper = 1,
+        disable_hyprland_logo   = false,
         key_press_enables_dpms = false,
         mouse_move_enables_dpms = true
     }
