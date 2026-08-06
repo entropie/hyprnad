@@ -1,4 +1,4 @@
-Hypernad is a nixos module that manages a bleeding edge @hyprland installation via source/flake with some plugins and ready to use configuration that is very xmonad orientied
+Hypernad is a nixos module that manages a bleeding edge @hyprland installation via source/flake with some plugins and ready to use configuration that is very xmonad oriented
 
 ## installation
 
