@@ -25,6 +25,8 @@ hl.bind(mainMod .. " + Y", hl.dsp.focus({ workspace = "previous" }))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(uwsm .. "gmrun"))
 hl.bind(mainMod .. " + G", function() hl.plugin.overview.toggle() end)
 
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
+
 
 hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd(uwsm .. "missioncenter"))
 hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd(uwsm .. "powermenu"))
