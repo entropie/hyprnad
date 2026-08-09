@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.56.0";
+      url = "github:hyprwm/Hyprland/v0.56.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
