@@ -22,7 +22,7 @@ hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd([[loginctl terminate-user "$U
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.close())
 
 hl.bind(mainMod .. " + Y", hl.dsp.focus({ workspace = "previous" }))
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(uwsm .. "gmrun"))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(uwsm .. "rofi -show run"))
 hl.bind(mainMod .. " + G", function() hl.plugin.overview.toggle() end)
 
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
