@@ -1,3 +1,7 @@
+hl.on("hyprland.start", function()
+    hl.exec_cmd("$HOME/bin/hl-motionsensor.sh")
+end)
+
 hl.monitor({
     output = "eDP-1",
     mode = "1920x1200@60",
