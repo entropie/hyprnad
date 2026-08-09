@@ -1,3 +1,7 @@
+hl.on("hyprland.start", function()
+         hl.exec_cmd([[xrandr --output DP-2 --primary]])
+end)
+
 hl.config({
     render = {}
 })
