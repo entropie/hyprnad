@@ -22,12 +22,13 @@ hl.device({
     name = "ilit2901:00-222a:5539",
     enabled = true,
     output = "eDP-1",
-    transform = 0,
 })
 
 hl.device({
     name = "ilit2901:00-222a:5539-stylus",
     enabled = true,
     output = "eDP-1",
-    transform = 0,
 })
+
+hl.bind("switch:on:gpio-keys", hl.dsp.exec_cmd("notify-send 'Tablet mode ON'"), { locked = true })
+hl.bind("switch:off:gpio-keys", hl.dsp.exec_cmd("notify-send 'Tablet mode OFF'"), { locked = true })
