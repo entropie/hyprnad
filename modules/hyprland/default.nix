@@ -45,6 +45,16 @@ in
   options.modules.hyprland = {
     enable = lib.mkEnableOption "Hyprland desktop module";
 
+    plugins.hyprgamma.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+    };
+
+    plugins.hyprspace.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+    };
+    
     user = lib.mkOption {
       type = lib.types.str;
       example = "mit";
@@ -104,42 +114,40 @@ in
       services.gvfs.enable = true;
       programs.hyprlock.enable = true;
 
-      environment.systemPackages = with pkgs; [
-        swaynotificationcenter
-        gnome-themes-extra
-        libnotify
+      environment.systemPackages =
+        (with pkgs; [
+          swaynotificationcenter
+          gnome-themes-extra
+          libnotify
 
-        playerctl
-        brightnessctl
+          playerctl
+          brightnessctl
 
-        loupe
-        nautilus
-        gnome-frog
-        gnome-firmware
-        gnome-calculator
-        gnome-disk-utility
+          loupe
+          nautilus
+          gnome-frog
+          gnome-firmware
+          gnome-calculator
+          gnome-disk-utility
 
-        wofi
-        waybar
-        eww
-        wl-clipboard
-        grim
-        dunst
+          wofi
+          waybar
+          eww
+          wl-clipboard
+          grim
+          dunst
+          xrandr
 
-        xrandr
-
-
-        hyprgamma
-        hyprspace
-
-        hyprpaper
-        hyprshot
-        hyprpicker
-        hypridle
-        hyprlock
-        hyprpolkitagent
-        hyprland-qt-support
-      ];
+          hyprpaper
+          hyprshot
+          hyprpicker
+          hypridle
+          hyprlock
+          hyprpolkitagent
+          hyprland-qt-support
+        ])
+        ++ lib.optional cfg.plugins.hyprgamma.enable hyprgamma
+        ++ lib.optional cfg.plugins.hyprspace.enable hyprspace;      
 
       environment.sessionVariables = {
         NIXOS_OZONE_WL = "1"; # Run electron apps without Xwayland
