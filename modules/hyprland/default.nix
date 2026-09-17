@@ -193,7 +193,6 @@ in
 
         services.hyprpaper = {
           enable = true;
-          settings = null;
         };
 
         gtk = {
