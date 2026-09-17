@@ -189,6 +189,13 @@ in
           else
             config.lib.file.mkOutOfStoreSymlink cfg.configDir;
 
+        services.hypridle.enable = true;
+
+        services.hyprpaper = {
+          enable = true;
+          settings = null;
+        };
+
         gtk = {
           enable = true;
 
