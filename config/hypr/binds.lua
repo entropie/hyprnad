@@ -90,10 +90,10 @@ local workspaces = {
 }
 
 for _, ws in ipairs(workspaces) do
-    hl.workspace_rule({
-        workspace = tostring(ws.id),
-        default_name = ws.name,
-    })
+    -- hl.workspace_rule({
+    --     workspace = tostring(ws.id),
+    --     default_name = ws.name,
+    -- })
 
     hl.bind(
         mainMod .. " + " .. ws.key,

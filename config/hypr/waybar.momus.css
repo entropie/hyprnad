@@ -33,6 +33,11 @@ image {
 #clock {
     letter-spacing: 0px;
 }
+#clock.dayOM {
+    margin: 0;
+    padding: 0;
+}
+
 #clock.norm {
     color: rgba(100,140,50, 1);
     margin: 0;
