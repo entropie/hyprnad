@@ -17,7 +17,8 @@
     };
 
     hyprgamma-src = {
-      url = "github:surprizeattackxx-dotcom/hypr-gamma";
+      #url = "github:surprizeattackxx-dotcom/hypr-gamma";
+      url = "github:entropie/hypr-gamma/fix/hyprland-socket1-api";
       flake = false;
     };
 

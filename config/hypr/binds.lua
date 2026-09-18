@@ -23,7 +23,7 @@ hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.close())
 
 hl.bind(mainMod .. " + Y", hl.dsp.focus({ workspace = "previous" }))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(uwsm .. "rofi -show run"))
-hl.bind(mainMod .. " + G", function() hl.plugin.overview.toggle() end)
+-- hl.bind(mainMod .. " + G", function() hl.plugin.overview.toggle() end)
 
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
 
@@ -49,6 +49,9 @@ hl.bind(mainMod .. " + S", hl.dsp.exec_cmd(pypr .. " toggle pavucontrol"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(pypr .. " toggle term"))
 hl.bind(mainMod .. " + c", hl.dsp.exec_cmd(pypr .. " toggle copyq"))
 
+
+hl.bind(mainMod .. " + g", hl.dsp.exec_cmd("hyprctl hyprgamma:set DP-2 gamma 0.8"))
+hl.bind(mainMod .. " + SHIFT + g", hl.dsp.exec_cmd("hyprctl hyprgamma:set DP-2 gamma 1"))
 
 -- PiP bind
 hl.bind("SUPER + N", function()

@@ -118,15 +118,16 @@
     "hyprgamma-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1784597885,
-        "narHash": "sha256-xmyIP9/PLVyeuwXoMtVFsDy0I7A4J8pCOlVcpq4qRcA=",
-        "owner": "surprizeattackxx-dotcom",
+        "lastModified": 1789693149,
+        "narHash": "sha256-lFY5MMiiV3ucapLG918rCgS1mnF2dvu0CaLLHXRxr1g=",
+        "owner": "entropie",
         "repo": "hypr-gamma",
-        "rev": "8e8a887b0553e8b7c6b2075f46195ca8ce8603f1",
+        "rev": "8504b53cb71752daca30bf13f575cffaedda81d8",
         "type": "github"
       },
       "original": {
-        "owner": "surprizeattackxx-dotcom",
+        "owner": "entropie",
+        "ref": "fix/hyprland-socket1-api",
         "repo": "hypr-gamma",
         "type": "github"
       }
@@ -187,6 +188,7 @@
       "original": {
         "owner": "hyprwm",
         "repo": "Hyprland",
+        "rev": "d50ca8950ac8753c54e50b6d44f4461df14bfabb",
         "type": "github"
       }
     },
