@@ -5,10 +5,11 @@
     border: none;
     border-radius: 0;
     font-family: "Terminus";
-    background-color: rgba(0, 0, 0, 0.9);
 }
 
 window#waybar {
+    background-color: rgba(0, 0, 0, 0.9);
+
 }
 
 image {
@@ -41,6 +42,10 @@ image {
     color: rgba(100,140,50, 1);
     margin: 0;
     padding: 0;
+    margin-left: 3px;
+    margin-right: 3px;
+                 
+    font-weight: bold;
 }
 #clock.secs {
     font-weight: bold;
@@ -54,22 +59,18 @@ image {
     padding: 0 4px;
 }
 
-#network {
-    margin-right: 50px;
-    color: #386b02;
+#window {
 }
+
 #battery {
     padding: 0;
-    background-color: #0b0619;
     opacity: .7;
     margin-right: 20px;            
 }
 
 #tray {
-    background-color: rgba(43, 2, 27, .7);;
     padding: 0;
     opacity: .7;
-    margin-right: 20px;
 }
 
 #tray image {
@@ -79,6 +80,20 @@ image {
 #bluetooth {
     font-size: 16px;
 }
+
+
+#network {
+    color: #386b02;
+}
+
+#network.down {
+}
+
+#network.up {
+    margin-right: 30px;
+    margin-left: 7px;
+}
+
 
 #workspaces button {
     opacity: .2;
