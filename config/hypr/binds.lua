@@ -16,6 +16,9 @@ local function toggle_keepassxc()
 end
 
 
+-- pass ALT + backspace to obs (for save replay)
+hl.bind("ALT + BackSpace", hl.dsp.pass({ window = [[class:com\.obsproject\.Studio]] }), { dont_inhibit = true })
+
 
 hl.bind(mainMod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(uwsm .. term))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd([[loginctl terminate-user "$USER"]]))
