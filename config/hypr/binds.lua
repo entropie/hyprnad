@@ -40,7 +40,7 @@ hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:mag
 
 
 
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
 
 hl.bind("Print", hl.dsp.exec_cmd('grim - | satty -f - --copy-command wl-copy -o "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"'))
@@ -75,9 +75,9 @@ hl.bind(mainMod .. " + comma", hl.dsp.focus({ monitor = "+1" }))
 hl.bind(mainMod .. " + period", hl.dsp.focus({ monitor = "-1" }))
 
 -- Move window position within the layout
+hl.bind(mainMod .. " + SHIFT + h", hl.dsp.window.move({ direction = "up" }))
 hl.bind(mainMod .. " + SHIFT + j", hl.dsp.window.move({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + k", hl.dsp.window.move({ direction = "right" }))
-hl.bind(mainMod .. " + SHIFT + h", hl.dsp.window.move({ direction = "up" }))
 hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.move({ direction = "down" }))
 
 
