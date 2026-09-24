@@ -43,7 +43,7 @@ hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:mag
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
 
-hl.bind("Print", hl.dsp.exec_cmd('grim - | satty -f - --copy-command wl-copy -o "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"'))
+-- hl.bind("Print", hl.dsp.exec_cmd('grim - | satty -f - --copy-command wl-copy -o "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"'))
 
 local pypr = "uwsm-app pypr-client"
 hl.bind(mainMod .. " + X", toggle_keepassxc)
@@ -134,7 +134,7 @@ hl.define_submap("media", function()
                     
                     hl.bind("escape", hl.dsp.submap("reset"))
 end)
-hl.bind("SUPER + m", hl.dsp.submap("media"))
+hl.bind("SUPER + SHIFT + m", hl.dsp.submap("media"))
 
 -- Mouse
 
