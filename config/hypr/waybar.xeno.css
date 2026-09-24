@@ -106,3 +106,25 @@ image {
 #workspaces button.active {
     opacity: 1;
 }
+
+
+#custom-mouse-battery,
+#custom-headset-battery {
+    padding: 0 6px;
+    opacity: .5;
+}
+
+#custom-mouse-battery.warning,
+#custom-headset-battery.warning {
+  color: #f9e2af;
+}
+
+#custom-mouse-battery.critical,
+#custom-headset-battery.critical {
+  color: #f38ba8;
+}
+
+#custom-mouse-battery.charging,
+#custom-headset-battery.charging {
+  color: #a6e3a1;
+}
