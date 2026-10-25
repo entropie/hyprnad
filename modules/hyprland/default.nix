@@ -142,7 +142,6 @@ in
 
           loupe
           nautilus
-          gnome-frog
           gnome-firmware
           gnome-calculator
           gnome-disk-utility
