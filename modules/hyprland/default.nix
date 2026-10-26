@@ -78,6 +78,9 @@ in
 
     (lib.mkIf cfg.enable {
 
+      security.wrappers.Hyprland.source = lib.mkForce "${config.programs.hyprland.package}/bin/.Hyprland-wrapped";
+
+
       security.pam.services.greetd.enableGnomeKeyring = true;
 
       # services.greetd = {
