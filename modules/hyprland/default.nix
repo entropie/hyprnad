@@ -81,11 +81,11 @@ in
       security.wrappers.Hyprland.source =
         lib.mkForce "${config.programs.hyprland.package}/bin/.Hyprland-wrapped";
 
-      # Match Mesa to Hyprland's nixpkgs while allowing host overrides.
       hardware.graphics = {
-        package = lib.mkDefault hyprNixpkgs.mesa;
-        package32 = lib.mkDefault hyprNixpkgs.pkgsi686Linux.mesa;
+        package = lib.mkOverride 900 hyprNixpkgs.mesa;
+        package32 = lib.mkOverride 900 hyprNixpkgs.pkgsi686Linux.mesa;
       };
+
 
       security.pam.services.greetd.enableGnomeKeyring = true;
 
