@@ -4,12 +4,19 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # hyprland = {
+    #   # url = "github:hyprwm/Hyprland/v0.56.2";
+    #   # url = "github:hyprwm/Hyprland";
+    #   url = "github:hyprwm/Hyprland/d50ca8950ac8753c54e50b6d44f4461df14bfabb";
+    #   # inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     hyprland = {
-      # url = "github:hyprwm/Hyprland/v0.56.2";
-      # url = "github:hyprwm/Hyprland";
       url = "github:hyprwm/Hyprland/d50ca8950ac8753c54e50b6d44f4461df14bfabb";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.url =
+        "github:NixOS/nixpkgs/0968519e14f7aa7d3e9b389682bd74d2b51c8ce8";
     };
+   
 
     pyprland = {
       url = "github:hyprland-community/pyprland/3.4.3";
