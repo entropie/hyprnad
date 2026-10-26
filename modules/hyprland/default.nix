@@ -6,11 +6,12 @@ let
   hyprnadInputs = inputs;
   hyprland = inputs.hyprland;
 
-
   cfg = config.modules.hyprland;
   system = pkgs.stdenv.hostPlatform.system;
+
   hyprPkgs = hyprland.packages.${system};
   hyprPackage = hyprPkgs.hyprland;
+  hyprNixpkgs = hyprland.inputs.nixpkgs.legacyPackages.${system};
 
   hyprspace = hyprnadInputs.Hyprspace.packages.${system}.Hyprspace;
 
@@ -33,7 +34,6 @@ let
         };
       }
     ) { };
-
 in
 {
   imports = [
@@ -54,7 +54,7 @@ in
       type = lib.types.bool;
       default = true;
     };
-    
+
     user = lib.mkOption {
       type = lib.types.str;
       example = "mit";
@@ -77,28 +77,27 @@ in
     }
 
     (lib.mkIf cfg.enable {
+      # Point the capability wrapper at the actual ELF binary.
+      security.wrappers.Hyprland.source =
+        lib.mkForce "${config.programs.hyprland.package}/bin/.Hyprland-wrapped";
 
-      security.wrappers.Hyprland.source = lib.mkForce "${config.programs.hyprland.package}/bin/.Hyprland-wrapped";
-
+      # Match Mesa to Hyprland's nixpkgs while allowing host overrides.
+      hardware.graphics = {
+        package = lib.mkDefault hyprNixpkgs.mesa;
+        package32 = lib.mkDefault hyprNixpkgs.pkgsi686Linux.mesa;
+      };
 
       security.pam.services.greetd.enableGnomeKeyring = true;
-
-      # services.greetd = {
-      #   enable = true;
-
-      #   settings.default_session = {
-      #     command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
-      #     user = "greeter";
-      #   };
-      # };
 
       nix.settings = {
         substituters = [ "https://hyprland.cachix.org" ];
         trusted-substituters = [ "https://hyprland.cachix.org" ];
-        trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+        trusted-public-keys = [
+          "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        ];
         trusted-users = [ "root" "@wheel" ];
       };
-      
+
       services.greetd = {
         enable = true;
         useTextGreeter = true;
@@ -108,8 +107,7 @@ in
           user = "greeter";
         };
       };
-      
-      # Display Manager
+
       services.displayManager = {
         gdm.enable = false;
         defaultSession = "hyprland-uwsm";
@@ -122,15 +120,10 @@ in
       programs.hyprland = {
         enable = true;
         withUWSM = true;
-        # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-        package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-        #portalPackage = pkgs.xdg-desktop-portal-hyprland; # Use stable nixpkgs version to fix Qt version mismatch
-        portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+        package = hyprPackage;
+        portalPackage = hyprPkgs.xdg-desktop-portal-hyprland;
       };
 
-      
-
-      # Components
       services.gvfs.enable = true;
       programs.hyprlock.enable = true;
 
@@ -168,16 +161,17 @@ in
           hyprland-qtutils
         ])
         ++ lib.optional cfg.plugins.hyprgamma.enable hyprgamma
-        ++ lib.optional cfg.plugins.hyprspace.enable hyprspace;      
+        ++ lib.optional cfg.plugins.hyprspace.enable hyprspace;
 
       environment.sessionVariables = {
-        NIXOS_OZONE_WL = "1"; # Run electron apps without Xwayland
-        NAUTILUS_4_EXTENSION_DIR = "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
+        NIXOS_OZONE_WL = "1";
+        NAUTILUS_4_EXTENSION_DIR =
+          "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
       };
 
       environment.pathsToLink = [
         "/share/nautilus-python/extensions"
-        "/share/hypr" # lua stub: /run/current-system/sw/share/hypr/stubs
+        "/share/hypr"
       ];
 
       qt = {
@@ -194,10 +188,7 @@ in
             config.lib.file.mkOutOfStoreSymlink cfg.configDir;
 
         services.hypridle.enable = true;
-
-        services.hyprpaper = {
-          enable = true;
-        };
+        services.hyprpaper.enable = true;
 
         gtk = {
           enable = true;
@@ -228,24 +219,21 @@ in
             button-layout = ":";
           };
         };
-
       };
 
       services.displayManager.sessionPackages = [
         (
           (pkgs.writeTextDir "share/wayland-sessions/uwsm-default.desktop" ''
-          [Desktop Entry]
-          Version=1.0
-          Name=UWSM (default)
-          Exec=${pkgs.uwsm}/bin/uwsm start default
-          Type=Application
-        '').overrideAttrs (_: { passthru.providedSessions = [ "uwsm-default" ]; })
+            [Desktop Entry]
+            Version=1.0
+            Name=UWSM (default)
+            Exec=${pkgs.uwsm}/bin/uwsm start default
+            Type=Application
+          '').overrideAttrs (_: {
+            passthru.providedSessions = [ "uwsm-default" ];
+          })
         )
       ];
-
     })
   ];
 }
-
-
-
