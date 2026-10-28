@@ -12,9 +12,9 @@
     # };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland/d50ca8950ac8753c54e50b6d44f4461df14bfabb";
+      url = "github:hyprwm/Hyprland/v0.57.0";
       inputs.nixpkgs.url =
-        "github:NixOS/nixpkgs/0968519e14f7aa7d3e9b389682bd74d2b51c8ce8";
+        "github:NixOS/nixpkgs/09063bd1f2b36fd9fd793c36dfade7bd40a93dfc";
     };
    
 
