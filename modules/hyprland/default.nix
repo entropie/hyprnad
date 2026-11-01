@@ -77,9 +77,9 @@ in
     }
 
     (lib.mkIf cfg.enable {
-      # Point the capability wrapper at the actual ELF binary.
-      security.wrappers.Hyprland.source =
-        lib.mkForce "${config.programs.hyprland.package}/bin/.Hyprland-wrapped";
+      # # Point the capability wrapper at the actual ELF binary.
+      # security.wrappers.Hyprland.source =
+      #   lib.mkForce "${config.programs.hyprland.package}/bin/.Hyprland-wrapped";
 
       hardware.graphics = {
         package = lib.mkOverride 900 hyprNixpkgs.mesa;
