@@ -158,7 +158,6 @@ in
           hyprpolkitagent
           hyprland-qt-support
           hyprland-protocols
-          hyprland-qtutils
         ])
         ++ lib.optional cfg.plugins.hyprgamma.enable hyprgamma
         ++ lib.optional cfg.plugins.hyprspace.enable hyprspace;
