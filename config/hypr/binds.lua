@@ -30,7 +30,7 @@ hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(uwsm .. "rofi -show run"))
 
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
 
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(uwsm .. " nautilus"))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(uwsm .. " nautilus --new-window"))
 
 hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd(uwsm .. "missioncenter"))
 hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd(uwsm .. "powermenu"))
