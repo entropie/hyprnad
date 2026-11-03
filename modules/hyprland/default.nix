@@ -125,7 +125,7 @@ in
       };
 
       services.gvfs.enable = true;
-      programs.hyprlock.enable = true;
+      programs.hyprlock.enable = false;
 
       environment.systemPackages =
         (with pkgs; [
