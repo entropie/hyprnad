@@ -3,6 +3,7 @@ local term = "ghostty"
 local uwsm = "uwsm-app -- "
 
 local mainMod = "SUPER" 
+local workspace_history = require("workspace_history")
 
 
 local function toggle_keepassxc()
@@ -24,7 +25,7 @@ hl.bind(mainMod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(uwsm .. term))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd([[loginctl terminate-user "$USER"]]))
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.close())
 
-hl.bind(mainMod .. " + Y", hl.dsp.focus({ workspace = "previous" }))
+hl.bind(mainMod .. " + Y", workspace_history.toggle)
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(uwsm .. "rofi -show run"))
 -- hl.bind(mainMod .. " + G", function() hl.plugin.overview.toggle() end)
 
