@@ -128,3 +128,7 @@ image {
 #custom-headset-battery.charging {
   color: #a6e3a1;
 }
+
+#custom-mic-dot { color: #888888; }
+#custom-mic-dot.ready { color: #68bd65; }
+#custom-mic-dot.recording { color: #ff963d; }

@@ -159,6 +159,10 @@ in
           hyprland-qt-support
           hyprland-protocols
         ])
+        ++ lib.optional (config.networking.hostName == "xeno") (pkgs.writeShellScriptBin "mic-dot" ''
+          export PATH=${lib.makeBinPath [ pkgs.pipewire pkgs.pulseaudio ]}:$PATH
+          exec ${pkgs.ruby}/bin/ruby ${./mic-dot.rb}
+        '')
         ++ lib.optional cfg.plugins.hyprgamma.enable hyprgamma
         ++ lib.optional cfg.plugins.hyprspace.enable hyprspace;
 
