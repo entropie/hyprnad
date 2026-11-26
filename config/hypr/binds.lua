@@ -29,6 +29,9 @@ hl.bind(mainMod .. " + Y", workspace_history.toggle)
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(uwsm .. "rofi -show run"))
 -- hl.bind(mainMod .. " + G", function() hl.plugin.overview.toggle() end)
 
+hl.bind(mainMod .. " + ALT + V", hl.dsp.exec_cmd("voiceio toggle"))
+hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("dicta toggle_talk --mode type"))
+
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
 
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(uwsm .. " nautilus --new-window"))
@@ -45,7 +48,7 @@ hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:mag
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
 
--- hl.bind("Print", hl.dsp.exec_cmd('grim - | satty -f - --copy-command wl-copy -o "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"'))
+hl.bind("Print", hl.dsp.exec_cmd('grim - | satty -f - --copy-command wl-copy -o "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"'))
 
 local pypr = "uwsm-app pypr-client"
 hl.bind(mainMod .. " + X", toggle_keepassxc)
