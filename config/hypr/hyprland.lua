@@ -8,24 +8,27 @@
 require("custom")
 
 local hostname_file = io.open("/etc/hostname", "r")
-
+local hostname
 if hostname_file then
-   local hostname = hostname_file:read("*l")
-   hostname_file:close()
-
-   local home = os.getenv("HOME")
-   local host_config = home .. "/.config/hypr/hyprland." .. hostname .. ".lua"
-   local file = io.open(host_config, "r")
-
-   if file then
-      file:close()
-      dofile(host_config)
-   end
+    hostname = hostname_file:read("*l")
+    hostname_file:close()
 end
 
+local function load_host_file(prefix)
+    if not hostname then return end
+    local path = os.getenv("HOME") .. "/.config/hypr/" .. prefix .. "." .. hostname .. ".lua"
+    local file = io.open(path, "r")
+    if file then
+        file:close()
+        dofile(path)
+    end
+end
+
+load_host_file("hyprland")
 
 require("config")
 require("binds")
 require("exec")
+load_host_file("exec")
 require("rules")
 
