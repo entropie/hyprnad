@@ -13,6 +13,11 @@ let
   hyprPackage = hyprPkgs.hyprland;
   hyprNixpkgs = hyprland.inputs.nixpkgs.legacyPackages.${system};
 
+  deviceBattery = pkgs.writeShellScriptBin "device-battery" ''
+    export PATH=${lib.makeBinPath [ pkgs.coreutils pkgs.upower pkgs.headsetcontrol ]}:$PATH
+    exec ${pkgs.ruby}/bin/ruby ${./bin/device-battery.rb} "$@"
+  '';
+
   hyprgamma = pkgs.callPackage
     ({ lib, cmake, nlohmann_json, hyprlandPlugins, ... }:
       hyprlandPlugins.mkHyprlandPlugin {
@@ -170,10 +175,13 @@ in
           hyprland-qt-support
           hyprland-protocols
         ])
-        ++ lib.optional (config.networking.hostName == "xeno") (pkgs.writeShellScriptBin "mic-dot" ''
-          export PATH=${lib.makeBinPath [ pkgs.pipewire pkgs.pulseaudio ]}:$PATH
-          exec ${pkgs.ruby}/bin/ruby ${./mic-dot.rb}
-        '')
+        ++ lib.optionals (config.networking.hostName == "xeno") [
+          deviceBattery
+          (pkgs.writeShellScriptBin "mic-dot" ''
+            export PATH=${lib.makeBinPath [ deviceBattery pkgs.pipewire pkgs.pulseaudio ]}:$PATH
+            exec ${pkgs.ruby}/bin/ruby ${./bin/mic-dot.rb}
+          '')
+        ]
         ++ lib.optional cfg.plugins.hyprgamma.enable hyprgamma;
 
       environment.sessionVariables = {
