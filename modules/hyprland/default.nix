@@ -103,7 +103,25 @@ in
         useTextGreeter = true;
 
         settings.default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions";
+          command =
+            let
+              desktops = config.services.displayManager.sessionData.desktops;
+              sessions = pkgs.linkFarm "tuigreet-sessions" [
+                {
+                  name = "uwsm-default.desktop";
+                  path = "${desktops}/share/wayland-sessions/uwsm-default.desktop";
+                }
+              ];
+            in
+              lib.concatStringsSep " " [
+                "${pkgs.tuigreet}/bin/tuigreet"
+                "--time"
+                "--remember"
+                "--sessions ${sessions}"
+                "--xsessions ${pkgs.emptyDirectory}"
+                "--cmd '${pkgs.uwsm}/bin/uwsm start default'"
+              ];
+
           user = "greeter";
         };
       };
