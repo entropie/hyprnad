@@ -178,7 +178,7 @@ if $PROGRAM_NAME == __FILE__
   devices = {
     "mouse" => DeviceBattery::UPowerDevice.new(
       name: "Logitech G Pro",
-      serial: "4c-31-c3-98"
+      serial: "7f-05-04-f6"
     ),
     "headset" => DeviceBattery::HeadsetControlDevice.new(
       name: "Logitech PRO X Wireless",
