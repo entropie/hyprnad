@@ -27,7 +27,6 @@ hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.close())
 
 hl.bind(mainMod .. " + Y", workspace_history.toggle)
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(uwsm .. "rofi -show run"))
--- hl.bind(mainMod .. " + G", function() hl.plugin.overview.toggle() end)
 
 hl.bind(mainMod .. " + ALT + V", hl.dsp.exec_cmd("voiceio toggle"))
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("dicta toggle_talk --mode type"))

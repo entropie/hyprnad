@@ -13,8 +13,6 @@ let
   hyprPackage = hyprPkgs.hyprland;
   hyprNixpkgs = hyprland.inputs.nixpkgs.legacyPackages.${system};
 
-  hyprspace = hyprnadInputs.Hyprspace.packages.${system}.Hyprspace;
-
   hyprgamma = pkgs.callPackage
     ({ lib, cmake, nlohmann_json, hyprlandPlugins, ... }:
       hyprlandPlugins.mkHyprlandPlugin {
@@ -46,11 +44,6 @@ in
     enable = lib.mkEnableOption "Hyprland desktop module";
 
     plugins.hyprgamma.enable = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-    };
-
-    plugins.hyprspace.enable = lib.mkOption {
       type = lib.types.bool;
       default = true;
     };
@@ -181,8 +174,7 @@ in
           export PATH=${lib.makeBinPath [ pkgs.pipewire pkgs.pulseaudio ]}:$PATH
           exec ${pkgs.ruby}/bin/ruby ${./mic-dot.rb}
         '')
-        ++ lib.optional cfg.plugins.hyprgamma.enable hyprgamma
-        ++ lib.optional cfg.plugins.hyprspace.enable hyprspace;
+        ++ lib.optional cfg.plugins.hyprgamma.enable hyprgamma;
 
       environment.sessionVariables = {
         NIXOS_OZONE_WL = "1";

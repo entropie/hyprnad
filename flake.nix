@@ -29,10 +29,6 @@
       flake = false;
     };
 
-    Hyprspace = {
-      url = "github:entropie/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-    };
   };
 
   outputs = inputs@{ self, ... }: {

@@ -1,26 +1,5 @@
 {
   "nodes": {
-    "Hyprspace": {
-      "inputs": {
-        "hyprland": [
-          "hyprland"
-        ],
-        "systems": "systems"
-      },
-      "locked": {
-        "lastModified": 1785015868,
-        "narHash": "sha256-P27tvgpduDsMjk9mSti4We+a3kzYWYWznZKizvnyS+Q=",
-        "owner": "entropie",
-        "repo": "Hyprspace",
-        "rev": "0799be7464fac7ea959b7c6c7809dadd6c21c5aa",
-        "type": "github"
-      },
-      "original": {
-        "owner": "entropie",
-        "repo": "Hyprspace",
-        "type": "github"
-      }
-    },
     "aquamarine": {
       "inputs": {
         "hyprutils": [
@@ -520,26 +499,10 @@
     },
     "root": {
       "inputs": {
-        "Hyprspace": "Hyprspace",
         "hyprgamma-src": "hyprgamma-src",
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs_2",
         "pyprland": "pyprland"
-      }
-    },
-    "systems": {
-      "locked": {
-        "lastModified": 1689347949,
-        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
-        "owner": "nix-systems",
-        "repo": "default-linux",
-        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default-linux",
-        "type": "github"
       }
     },
     "systems_2": {
