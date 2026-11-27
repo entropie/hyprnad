@@ -28,8 +28,10 @@ hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + Y", workspace_history.toggle)
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(uwsm .. "rofi -show run"))
 
-hl.bind(mainMod .. " + ALT + V", hl.dsp.exec_cmd("voiceio toggle"))
-hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("dicta toggle_talk --mode type"))
+
+
+hl.bind(mainMod .. " + code:49", hl.dsp.exec_cmd("voiceio toggle")) -- Super+^
+hl.bind(mainMod .. " + SHIFT + code:49", hl.dsp.exec_cmd("dicta toggle_talk --mode type"))
 
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
 
