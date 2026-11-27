@@ -1,3 +1,14 @@
+local config_home = os.getenv("XDG_CONFIG_HOME")
+if not config_home or config_home == "" then
+    config_home = os.getenv("HOME") .. "/.config"
+end
+
+local keymap_path = config_home .. "/xkb/mykbd.xkb"
+local keymap = io.open(keymap_path, "r")
+if keymap then
+    keymap:close()
+end
+
 -- Look & Feel --
 hl.config({
     ecosystem = {
@@ -10,7 +21,7 @@ hl.config({
         accel_profile = "flat",
         kb_layout = "de",
         kb_options = "ctrl:nocaps",
-        kb_file = "/home/mit/.config/xkb/mykbd.xkb",
+        kb_file = keymap and keymap_path or nil,
         follow_mouse = 2
     },
 
