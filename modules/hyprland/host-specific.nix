@@ -3,36 +3,30 @@
 let
   cfg = config.modules.hyprland;
   hostName = config.networking.hostName;
-
-  hyprConfigDir =
-    if cfg.configDir == null then
-      "${hyprnadInputs.self}/config/hypr"
-    else
-      cfg.configDir;
+  bundledDir = "${hyprnadInputs.self}/config/hypr";
 in
 {
+  options.modules.hyprland.desktopProfile = lib.mkOption {
+    type = lib.types.str;
+    default = if builtins.pathExists "${bundledDir}/waybar.${hostName}.conf"
+      then hostName else "default";
+    description = "Waybar and hyprpaper file profile. Set this for profiles available only in a writable configDir.";
+  };
+
   config = lib.mkIf cfg.enable {
-    home-manager.users.${cfg.user} = hmArgs: {
-      xdg.configFile."waybar/config".source =
-        if cfg.configDir == null then
-          "${hyprConfigDir}/waybar.${hostName}.conf"
-        else
-          hmArgs.config.lib.file.mkOutOfStoreSymlink
-            "${hyprConfigDir}/waybar.${hostName}.conf";
-
-      xdg.configFile."waybar/style.css".source =
-        if cfg.configDir == null then
-          "${hyprConfigDir}/waybar.${hostName}.css"
-        else
-          hmArgs.config.lib.file.mkOutOfStoreSymlink
-            "${hyprConfigDir}/waybar.${hostName}.css";
-
-      xdg.configFile."hyprpaper/current.conf".source =
-        if cfg.configDir == null then
-          "${hyprConfigDir}/hyprpaper.${hostName}.conf"
-        else
-          hmArgs.config.lib.file.mkOutOfStoreSymlink
-            "${hyprConfigDir}/hyprpaper.${hostName}.conf";
-    };
+    home-manager.users.${cfg.user} = { config, ... }:
+      let
+        profile = cfg.desktopProfile;
+        source = name:
+          if cfg.configDir == null then "${bundledDir}/${name}"
+          else config.lib.file.mkOutOfStoreSymlink "${cfg.configDir}/${name}";
+      in
+      {
+        xdg.configFile."waybar/config".source = source "waybar.${profile}.conf";
+        xdg.configFile."waybar/style.css".source = source "waybar.${profile}.css";
+        xdg.configFile."hyprpaper/current.conf" = lib.mkIf (profile != "default") {
+          source = source "hyprpaper.${profile}.conf";
+        };
+      };
   };
 }

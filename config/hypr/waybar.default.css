@@ -1,0 +1,14 @@
+window#waybar {
+    background-color: #202124;
+    color: #eeeeee;
+    font-family: sans-serif;
+}
+
+#workspaces button, #clock, #tray {
+    padding: 0 8px;
+}
+
+#workspaces button.active {
+    background-color: #45484d;
+    color: white;
+}

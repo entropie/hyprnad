@@ -201,7 +201,7 @@ in
             config.lib.file.mkOutOfStoreSymlink cfg.configDir;
 
         services.hypridle.enable = true;
-        services.hyprpaper.enable = true;
+        services.hyprpaper.enable = cfg.desktopProfile != "default";
 
         gtk = {
           enable = true;
